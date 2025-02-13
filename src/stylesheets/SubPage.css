@@ -1,0 +1,65 @@
+.subPageText {
+    background-color:aliceblue;
+    max-height: 150px;  /* Imposta l'altezza massima del testo */
+    overflow: hidden;  /* Nasconde il contenuto che esce dal riquadro */
+    position: relative;  
+    border-radius: 12px;
+    padding: 12px;
+    background: white;
+}
+
+.subPageText::after {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    background: white; /* Assicura che i puntini siano visibili */
+    padding-left: 5px;
+}
+
+.pagePreview {
+    display: block;
+    text-decoration: none;
+    border-radius: 12px;
+    padding: 16px;
+    background: #f9f9f9; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    max-width: 80%;
+    margin: 16px auto;
+}
+
+.pagePreview:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.top_left_cont h1 {
+    font-size: 1.75rem;
+    margin: 0 0 10px 0;
+}
+
+button {
+    display: block;
+    margin-top: 12px;
+    padding: 10px 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background: #007bff; /* Cambia il colore qui */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
+    
+}
+
+button:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+.pagePreview a {
+    pointer-events: none; 
+    color: #007bff;
+}

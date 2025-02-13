@@ -1,0 +1,126 @@
+body {
+  text-align: center;
+} 
+
+.menu-section {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-collapse {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 15px;
+    z-index: 1040;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    flex-grow: 0 !important;
+
+    
+}
+.dropdown-menu {
+  --bs-dropdown-bg: transparent !important; 
+    --bs-dropdown-border-color: transparent !important; 
+    --bs-dropdown-item-padding-x: 0 !important; 
+    position: static !important; 
+    text-align: center !important; 
+    width: 100%; 
+}
+
+.navbar-collapse.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.navbar-collapse.collapsing {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.navbar-nav .nav-item {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.navbar-nav .dropdown-menu {
+    position: static !important;
+    transform: none !important;
+    width: 100%;
+    text-align: center;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+/* 7️⃣ Stile per gli elementi del sottomenu */
+.navbar-nav .dropdown-item {
+    font-size: 18px;
+    font-weight: normal;
+    padding: 8px;
+    transition: color 0.3s;
+}
+
+.navbar-nav .dropdown-item:hover {
+    color: #007bff;
+}
+}
+
+@media screen and (min-width: 768px) {
+    .navbarButton {
+      background-color: #f8f9fa;
+      border: none;
+      color: #212529;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      box-sizing: border-box;
+    } 
+
+    .navbar-collapse {
+      display: flex;
+      justify-content: center; 
+      align-items: center; 
+      gap: 15px; 
+    }
+    
+    .navbarButton {
+      display: inline-block; 
+      text-align: center; 
+      border-radius: 12px;
+    }
+
+    .navbarButton:hover {
+      transform: translateY(-3px);
+      transform: scale(1.05);
+    }
+}
+
+
+
+.navbar {
+  position: relative;
+}

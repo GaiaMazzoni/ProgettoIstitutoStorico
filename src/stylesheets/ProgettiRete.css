@@ -1,0 +1,26 @@
+.progetti-di-rete-section {
+    display: table flex;
+    background-color: #F1C40F;
+    color: black;
+}
+
+.progetti-di-rete-section h2 {
+    display: table-row flex;
+    text-align: left;
+}
+
+.progetti-di-rete-section div a {
+    display: table-cell flex;
+    padding: 10px;
+}
+
+.progetti-di-rete-section img {
+    padding: 10px;
+}
+
+@media screen  and (max-width: 768px) {
+    img {
+        width: 40%;
+        flex-wrap: wrap;
+    }
+}

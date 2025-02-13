@@ -1,0 +1,29 @@
+.layout {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #fff;
+}
+
+.title-mobile{
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .logo-and-title {
+        display: none;
+    }
+
+    .title-mobile {
+        display: flex;
+    }
+
+    .layout{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        text-align: center;
+    }
+    
+}

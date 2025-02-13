@@ -1,0 +1,29 @@
+.pageContent {
+    background-color: #F9F9F9;
+    text-align: justify;
+    margin: 0.5%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    font-size: larger;
+}
+
+.pageContent h1 {
+    margin: 0.5%;
+    padding: 0.5%;
+    font-weight: bold;
+}
+
+.pageContent a {
+    text-decoration: none;
+    outline: 0 !important;
+    cursor: pointer;
+}
+
+.pageContent a[href] {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
