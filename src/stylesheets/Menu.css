@@ -24,7 +24,6 @@ body {
     padding: 15px;
     z-index: 1040;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-    display: flex;
     justify-content: center;
     flex-grow: 0 !important;
 
@@ -72,7 +71,6 @@ body {
     border: none;
 }
 
-/* 7️⃣ Stile per gli elementi del sottomenu */
 .navbar-nav .dropdown-item {
     font-size: 18px;
     font-weight: normal;
@@ -81,7 +79,7 @@ body {
 }
 
 .navbar-nav .dropdown-item:hover {
-    color: #007bff;
+    color: gainsboro;
 }
 }
 

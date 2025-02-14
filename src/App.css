@@ -73,3 +73,8 @@ a {
     color: inherit;
     display: contents;
 }
+
+.col-sm-8 {
+    display: block;  
+    width: 100%; 
+}

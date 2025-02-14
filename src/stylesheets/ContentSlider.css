@@ -5,19 +5,19 @@
 }
 
 .slick-prev, .slick-next {
-    color: black !important;  /* Cambia il colore dell'icona */
-    z-index: 1000; /* Assicura che siano visibili sopra altri elementi */
+    color: black !important;  
+    z-index: 1000; 
 }
 
 .slick-prev:before, .slick-next:before {
-    color: black !important; /* Cambia il colore della freccia */
-    font-size: 24px; /* Cambia la dimensione se serve */
+    color: black !important; 
+    font-size: 24px; 
 }
 
 .slider-card {
     width: 100%;  
     max-width: 400px; 
-    max-height: 400px; /* Fixes height to prevent overflow */
+    max-height: 400px; 
     display: flex;
     flex-direction: column;
 }
@@ -38,5 +38,5 @@
 }
   
   .slider-card .card-title {
-    font-size: clamp(10px, 2vw, 16px); /* Responsive font size */
+    font-size: clamp(10px, 2vw, 16px); 
   }

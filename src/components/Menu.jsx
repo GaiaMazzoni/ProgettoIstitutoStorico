@@ -9,7 +9,7 @@ export default function Menu() {
   useEffect(() => {
     const fetchMenuItems = async () => {
       try {
-        const response = await fetch("http://localhost/progetto_tesi_react/backend/controller/api-menuItem.php?menu=1");
+        const response = await fetch("http://localhost/ProgettoIstitutoStorico/backend/controller/api-menuItem.php?menu=1");
         const data = await response.json();
         setMenuItems(data);
       } catch (error) {
@@ -25,7 +25,7 @@ export default function Menu() {
       if (menuItems.length > 0) {
         for (let menuItem of menuItems) {
           try {
-            const response = await fetch(`http://localhost/progetto_tesi_react/backend/controller/api-menuItem.php?subsOfIdMenuItem=${menuItem.idMenuItem}`);
+            const response = await fetch(`http://localhost/ProgettoIstitutoStorico/backend/controller/api-menuItem.php?subsOfIdMenuItem=${menuItem.idMenuItem}`);
             const data = await response.json();
             console.log({menuItem});
             setSubMenuItems(prev => ({
