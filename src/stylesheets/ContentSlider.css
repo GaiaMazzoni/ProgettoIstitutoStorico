@@ -6,7 +6,7 @@
 
 .slick-prev, .slick-next {
     color: black !important;  
-    z-index: 1000; 
+    z-index: 50; 
 }
 
 .slick-prev:before, .slick-next:before {
