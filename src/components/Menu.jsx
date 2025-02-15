@@ -27,7 +27,6 @@ export default function Menu() {
           try {
             const response = await fetch(`http://localhost/ProgettoIstitutoStorico/backend/controller/api-menuItem.php?subsOfIdMenuItem=${menuItem.idMenuItem}`);
             const data = await response.json();
-            console.log({menuItem});
             setSubMenuItems(prev => ({
               ...prev,
               [menuItem.idMenuItem]: data

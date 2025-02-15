@@ -35,7 +35,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['subsOfIdMenuItem'])) {
     $subMenuItems = [];
     $menuItemId = $_GET['subsOfIdMenuItem'];
 
-    $subMenuItems= $menuItemModel->getAllSubsOfMenuItemAndSlugs($menuItemId);
+    $subMenuItems = $menuItemModel->getAllSubsOfMenuItemAndSlugs($menuItemId);
 
     if($subMenuItems){
         echo json_encode($subMenuItems);

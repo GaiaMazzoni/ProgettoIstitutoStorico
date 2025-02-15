@@ -12,8 +12,6 @@ export default function Page(){
     const [subPagine, setSubPagine] = useState([]);
     const [archivePageInfo, setArchivePageInfo] = useState([]);
     const [indice, setIndice] = useState([]);
-    const [note, setNote] = useState([]);
-    const [risorseAssociate, setRisorseAssociate] = useState([]);
 
     useEffect(() => {
         setPagina(null); 
@@ -27,7 +25,6 @@ export default function Page(){
             try {
                 const response = await fetch(`http://localhost/ProgettoIstitutoStorico/backend/controller/api-page.php?slug=${slug}`);
                 const data = await response.json();
-                console.log("Fetched page data:", data);
                 if (data && data.length > 0) { 
                     setPagina(data[0]);
                 } else {
@@ -44,9 +41,7 @@ export default function Page(){
     useEffect(() => {
         const fetchSubPages = async () => {
             if(pagina){
-                console.log("Id pagina è", pagina.idPage);
                 try{
-                    console.log("fetching pagine", pagina.idPage);
                     const response = await fetch(`http://localhost/ProgettoIstitutoStorico/backend/controller/api-page.php?idPageForCollectionPage=${pagina.idPage}`);
                     const data = await response.json();
                     
@@ -98,44 +93,6 @@ export default function Page(){
             fetchIndice();
         }
     }, [pagina?.idPage]);
-
-    //Recuperare le note della pagina, se presenti (di solito presenti in Studi di caso)
-    /*useEffect(() => {
-        const fetchNote = async () => {
-            if(pagina){
-                
-                try{
-                    const response = await fetch(`http://localhost/ProgettoIstitutoStorico/backend/controller/api-page.php?idPagePerNote=${pagina.idPage}`);
-                    const data = await response.json();
-                    setNote(data);
-                } catch (error) {
-                    console.error("Errore nel caricamento delle note", error);
-                }
-            }
-        };
-        if(pagina?.idPage){
-            fetchArchivePageInfo();
-        }
-    }, [pagina?.idPage]);*/
-
-    //Recuperare risorse della pagina, se presenti (bibliografia, emeroteca, ecc).
-    /*useEffect(() => {
-        const fetchRisorseAssociate = async () => {
-            if(pagina){
-                
-                try{
-                    const response = await fetch(`http://localhost/ProgettoIstitutoStorico/backend/controller/api-page.php?idPagePerRisorseAssociate=${pagina.idPage}`);
-                    const data = await response.json();
-                    setRisorseAssociate(data);
-                } catch (error) {
-                    console.error("Errore nel caricamento della pagina di archivio", error);
-                }
-            }
-        };
-        if(pagina?.idPage){
-            fetchRisorseAssociate();
-        }
-    }, [pagina?.idPage]);*/
 
     return(
         <div className='pageContent' key={slug}>
