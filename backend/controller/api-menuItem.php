@@ -14,30 +14,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 header('Content-Type: application/json');
 $dbHelper = new DatabaseHelper();
-$menuItemModel = new MenuItemModel();
+
 
 //Restituisce il menu di navigazione
 if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['menu'])) {
     
+    $menuItemModel = new MenuItemModel((int)$_GET['menu']);
+    $menuItems = $menuItemModel->getAllMenuItems();
+    $subMenuItems = $menuItemModel->getSubMenuItems();
 
-    $menuData = $menuItemModel->getAllMenuItems($_GET['menu']);
-
-    if ($menuData){
-        echo json_encode($menuData);
+    if ($menuItems){
+        echo json_encode([
+            'menuItems' => $menuItems,
+            'subMenuItems' => $subMenuItems
+        ]);
     } else {
         echo json_encode(['error' => 'Menu non trovato']);
     }
 
-}
-
-//Restituisce i sottomenu del menu di navigazione
-if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['subsOfIdMenuItem'])) {
-    $subMenuItems = [];
-    $menuItemId = $_GET['subsOfIdMenuItem'];
-
-    $subMenuItems = $menuItemModel->getAllSubsOfMenuItemAndSlugs($menuItemId);
-
-    if($subMenuItems){
-        echo json_encode($subMenuItems);
-    }
 }

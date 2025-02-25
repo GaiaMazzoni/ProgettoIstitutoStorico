@@ -58,7 +58,18 @@ class DatabaseHelper{
         }
     }
 
-    //Costruisce la query.
+  
+    /**
+     * Costruisce la query.
+     * @param mixed $action
+     * @param mixed $table
+     * @param mixed $data
+     * @param mixed $columns
+     * @param mixed $condition
+     * @param mixed $valuesForCondition
+     * @throws \Exception
+     * @return array{query: string, returningValuesForCondition: mixed}
+     */
     public function buildQuery($action, $table, $data = [], $columns = '*', $condition = '', $valuesForCondition = []){
         $query = '';
         $returningValuesForCondition = [];
@@ -95,7 +106,16 @@ class DatabaseHelper{
         return ['query' => $query, 'returningValuesForCondition' => $returningValuesForCondition];
     }
 
-    //Esegue una query e restituisce il risultato.
+    /**
+     * Esegue una query e restituisce il risultato
+     * @param mixed $action
+     * @param mixed $table
+     * @param mixed $data
+     * @param mixed $columns
+     * @param mixed $condition
+     * @param mixed $valuesForCondition
+     * @return array<array|bool|null>
+     */
     public function runQuery($action, $table, $data = [], $columns = '*', $condition = '', $valuesForCondition = []){
         $queryData = $this->buildQuery($action, $table, $data, $columns, $condition, $valuesForCondition);
         return $this->executeQuery($queryData['query'], $queryData['returningValuesForCondition']);

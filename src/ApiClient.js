@@ -14,27 +14,20 @@ async function getRequest(endpoint, params = {}) {
     }
 }
 
-export async function fetchMenuItems(menuId) {
+export async function fetchMenu(menuId){
+    return getRequest("api-menuItem.php", {menu: menuId});
+}
+
+/*export async function fetchMenuItems(menuId) {
     return getRequest("api-menuItem.php", {menu: menuId});
 }
 
 export async function fetchSubMenuItems(menuItemId) {
     return getRequest("api-menuItem.php", {subsOfIdMenuItem: menuItemId});
-}
+}*/
 
 export async function fetchPageBySlug(slug) {
     return getRequest("api-page.php", {slug});
 }
 
-export async function fetchSubPages(idPage) {
-    return getRequest("api-page.php", {idPageForCollectionPage: idPage});
-}
-
-export async function fetchArchivePageInfo(idPage) {
-    return getRequest("api-page.php", {idArchivePage: idPage});
-}
-
-export async function fetchIndice(idPage) {
-    return getRequest("api-page.php", {idPagePerIndice: idPage});
-}
 
