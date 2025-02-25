@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
+import { fetchPageBySlug, fetchArchivePageInfo, fetchSubPages, fetchIndice } from '../ApiClient';
 import '../stylesheets/Page.css';
 import SubPage from './SubPage';
 import ArchivePageInfoSchema from './ArchivePageInfoSchema';
@@ -21,49 +22,34 @@ export default function Page(){
 
     //Recuperare informazioni pagina
     useEffect(() => {
-        const fetchPageBySlug = async () => {
-            try {
-                const response = await fetch(`http://localhost/ProgettoIstitutoStorico/backend/controller/api-page.php?slug=${slug}`);
-                const data = await response.json();
-                if (data && data.length > 0) { 
-                    setPagina(data[0]);
-                } else {
-                    setPagina(null);
-                }
-            } catch (error) {
-                console.error("Errore nel caricamento della pagina", error);
-            }
-        }
-        fetchPageBySlug();
+        fetchPageBySlug(slug)
+        .then(data => setPagina(data[0] || null))
+        .catch(error => console.error("Errore nel caricamento della pagina", error));
     }, [slug]);
 
     //Recuperare sottopagine
     useEffect(() => {
-        const fetchSubPages = async () => {
-            if(pagina){
-                try{
-                    const response = await fetch(`http://localhost/ProgettoIstitutoStorico/backend/controller/api-page.php?idPageForCollectionPage=${pagina.idPage}`);
-                    const data = await response.json();
-                    
+        const loadSubPages = async () => {
+            if(pagina) {
+                try {
+                    const data = await fetchSubPages(pagina.idPage);
                     setSubPagine(data);
                 } catch (error) {
                     console.error("Errore nel caricamento delle sottopagine", error);
                 }
             }
         };
-        if(pagina?.idPage){
-            fetchSubPages();
+        if(pagina?.idPage) {
+            loadSubPages();
         }
     }, [pagina?.idPage]);
 
     //Recuperare informazioni da visualizzare nel caso sia una pagina di archivio
     useEffect(() => {
-        const fetchArchivePageInfo = async () => {
-            if(pagina){
-                
-                try{
-                    const response = await fetch(`http://localhost/ProgettoIstitutoStorico/backend/controller/api-page.php?idArchivePage=${pagina.idPage}`);
-                    const data = await response.json();
+        const loadArchivePageInfo = async () => {
+            if (pagina) {
+                try {
+                    const data = await fetchArchivePageInfo(pagina.idPage);
                     setArchivePageInfo(data);
                 } catch (error) {
                     console.error("Errore nel caricamento della pagina di archivio", error);
@@ -71,26 +57,24 @@ export default function Page(){
             }
         };
         if(pagina?.idPage){
-            fetchArchivePageInfo();
+            loadArchivePageInfo();
         }
     }, [pagina?.idPage]);
 
     //Recuperare indice della pagina, se presente (di solito presente in pagine di Studi di caso)
     useEffect(() => {
-        const fetchIndice = async () => {
-            if(pagina){
-                
-                try{
-                    const response = await fetch(`http://localhost/ProgettoIstitutoStorico/backend/controller/api-page.php?idPagePerIndice=${pagina.idPage}`);
-                    const data = await response.json();
+        const loadIndice = async () => {
+            if(pagina) {
+                try {
+                    const data = await fetchIndice(pagina.idPage);
                     setIndice(data);
-                } catch (error) {
-                    console.error("Errore nel caricamento dell'indice'", error);
+                } catch(error){
+                    console.error("Errore nel caricamento dell'indice", error);
                 }
             }
         };
         if(pagina?.idPage){
-            fetchIndice();
+            loadIndice();
         }
     }, [pagina?.idPage]);
 

@@ -1,44 +1,38 @@
 import { useState, useEffect } from "react";
 import '../stylesheets/Menu.css';
 import { Dropdown, Navbar, NavDropdown, Container } from "react-bootstrap";
+import { fetchMenuItems, fetchSubMenuItems } from "../ApiClient";
+
+const NAVBAR_MENU_ID = 1;
 
 export default function Menu() {
   const [menuItems, setMenuItems] = useState([]);
   const [subMenuItems, setSubMenuItems] = useState({});
 
   useEffect(() => {
-    const fetchMenuItems = async () => {
-      try {
-        const response = await fetch("http://localhost/ProgettoIstitutoStorico/backend/controller/api-menuItem.php?menu=1");
-        const data = await response.json();
-        setMenuItems(data);
-      } catch (error) {
-        console.error("Errore nel caricamento del menu di navigazione");
-      }
-    };
-
-    fetchMenuItems();
+    fetchMenuItems(NAVBAR_MENU_ID)
+      .then(setMenuItems)
+      .catch(error => console.error("Errore nel caricamento del menu di navigazione", error));
   }, []); 
 
   useEffect(() => {
-    const fetchSubMenuItems = async () => {
-      if (menuItems.length > 0) {
-        for (let menuItem of menuItems) {
-          try {
-            const response = await fetch(`http://localhost/ProgettoIstitutoStorico/backend/controller/api-menuItem.php?subsOfIdMenuItem=${menuItem.idMenuItem}`);
-            const data = await response.json();
-            setSubMenuItems(prev => ({
-              ...prev,
-              [menuItem.idMenuItem]: data
-            }));
-          } catch (error) {
-            console.error("Errore nel caricamento del sottomenu di navigazione", error);
-          }
-        }
+    const loadSubMenuItems = async () => {
+      if (menuItems.length === 0) return;
+
+      try{
+        const responses = await Promise.all(
+          menuItems.map(menuItem => 
+            fetchSubMenuItems(menuItem.idMenuItem).then(data => [menuItem.idMenuItem, data])
+          )
+        );
+        const subMenuData = Object.fromEntries(responses);
+        setSubMenuItems(subMenuData);
+      } catch(error){
+        console.error("Errore nel caricamento del sottomenu di navigazione", error);
       }
     };
-  
-    fetchSubMenuItems();
+
+    loadSubMenuItems();
   }, [menuItems]);
 
   return (
